@@ -3,6 +3,7 @@ const KEYS = {
   followUps: 'lo_followups',
   customTemplates: 'lo_custom_templates',
   usage: 'lo_usage',
+  trials: 'lo_trials',
   license: 'lo_license',
 };
 

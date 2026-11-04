@@ -12,7 +12,12 @@
       <h1>Listing Outreach</h1>
       <p class="sub">Local templates · Zillow & Redfin</p>
     </div>
-    <span id="planBadge" class="badge">Free</span>
+    <div class="plan-wrap" id="planWrap">
+      <button type="button" id="planBadge" class="badge" aria-haspopup="menu" aria-expanded="false">Free</button>
+      <div id="planMenu" class="plan-menu hidden" role="menu">
+        <button type="button" id="btnClearLicense" role="menuitem">Clear license</button>
+      </div>
+    </div>
   </header>
 
   <section class="card" id="listingCard">
@@ -28,13 +33,22 @@
     </div>
   </section>
 
-  <section class="card">
-    <h2>Your profile</h2>
-    <label>Name <input id="pName" autocomplete="name" /></label>
-    <label>Brokerage <input id="pBroker" /></label>
-    <label>Phone <input id="pPhone" autocomplete="tel" /></label>
-    <label>Email <input id="pEmail" autocomplete="email" /></label>
-    <button type="button" class="primary" id="btnSaveProfile">Save profile</button>
+  <section class="card" id="profileCard">
+    <div class="row between">
+      <h2>Your profile</h2>
+      <div class="row gap tight" id="profileActions">
+        <button type="button" class="ghost sm" id="btnViewProfile">View</button>
+        <button type="button" class="ghost sm" id="btnEditProfile">Edit</button>
+      </div>
+    </div>
+    <p id="profileSummary" class="profile-summary muted small hidden"></p>
+    <div id="profileForm">
+      <label>Name <input id="pName" autocomplete="name" /></label>
+      <label>Brokerage <input id="pBroker" /></label>
+      <label>Phone <input id="pPhone" autocomplete="tel" /></label>
+      <label>Email <input id="pEmail" autocomplete="email" /></label>
+      <button type="button" class="primary" id="btnSaveProfile">Save profile</button>
+    </div>
   </section>
 
   <section class="card">
@@ -43,7 +57,7 @@
       <span id="usageHint" class="muted small"></span>
     </div>
     <select id="templateSelect"></select>
-    <textarea id="output" rows="8" placeholder="Generated message…"></textarea>
+    <textarea id="output" rows="14" placeholder="Generated message…"></textarea>
     <div class="row gap">
       <button type="button" class="primary" id="btnGenerate">Generate</button>
       <button type="button" class="ghost" id="btnCopy">Copy</button>
@@ -55,19 +69,27 @@
   <section class="card">
     <div class="row between">
       <h2>Follow-ups</h2>
-      <button type="button" class="ghost" id="btnExport" title="Pro">Export CSV</button>
+      <div class="plan-wrap" id="exportWrap">
+        <button type="button" class="ghost" id="btnExport" title="1 free export trial, then Pro">Export ▾</button>
+        <div id="exportMenu" class="plan-menu hidden" role="menu">
+          <button type="button" id="btnExportCsv" role="menuitem">Export CSV</button>
+          <button type="button" id="btnExportXlsx" role="menuitem">Export Excel (.xlsx)</button>
+        </div>
+      </div>
     </div>
     <ul id="followList" class="list"></ul>
     <p id="followEmpty" class="muted small">No saved outreach yet.</p>
   </section>
 
-  <section class="card">
+  <section class="card" id="licenseCard">
     <h2>Pro license</h2>
-    <p class="muted small">Data stays on your device. Demo key: <code>LO-PRO-DEMO-2026</code></p>
-    <label>License key <input id="licenseKey" placeholder="LO-…" /></label>
+    <p class="muted small" id="licenseBlurb">Free: 20 generates/day · 1 export trial. Pro: unlimited generates &amp; exports.</p>
+    <div class="row gap" style="margin-top:0;margin-bottom:8px">
+      <button type="button" class="primary" id="btnBuyPro">Buy Pro</button>
+    </div>
+    <label>License key <input id="licenseKey" placeholder="LO-XXXXX-…" /></label>
     <div class="row gap">
-      <button type="button" class="primary" id="btnActivate">Activate</button>
-      <button type="button" class="ghost" id="btnDeactivate">Clear</button>
+      <button type="button" class="ghost" id="btnActivate">Activate</button>
     </div>
     <p id="licStatus" class="status"></p>
   </section>

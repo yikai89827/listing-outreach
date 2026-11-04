@@ -45,20 +45,61 @@ h2 {
 
 .sub { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
 
+.plan-wrap {
+  position: relative;
+}
+
 .badge {
   background: rgba(20, 184, 166, 0.15);
   color: var(--accent2);
   border: 1px solid rgba(20, 184, 166, 0.35);
   padding: 4px 8px;
   border-radius: 999px;
+  font: inherit;
   font-size: 11px;
   font-weight: 600;
+  cursor: default;
 }
 
 .badge.pro {
   background: rgba(250, 204, 21, 0.12);
   color: #facc15;
   border-color: rgba(250, 204, 21, 0.35);
+  cursor: pointer;
+}
+
+.badge.pro::after {
+  content: " ▾";
+  font-size: 9px;
+  opacity: 0.85;
+}
+
+.plan-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  min-width: 140px;
+  background: #121820;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 4px;
+  z-index: 20;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.plan-menu button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: var(--text);
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-weight: 500;
+}
+
+.plan-menu button:hover {
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .card {
@@ -72,6 +113,23 @@ h2 {
 .row { display: flex; align-items: center; }
 .between { justify-content: space-between; }
 .gap { gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.gap.tight { gap: 6px; margin-top: 0; flex-wrap: nowrap; }
+
+button.sm {
+  padding: 4px 8px;
+  font-size: 11px;
+  border-radius: 6px;
+}
+
+.profile-summary {
+  margin: 0 0 2px;
+  line-height: 1.4;
+}
+
+#profileForm.readonly input {
+  opacity: 0.85;
+  cursor: default;
+}
 
 label {
   display: block;
@@ -91,7 +149,24 @@ input, select, textarea {
   font: inherit;
 }
 
-textarea { resize: vertical; font-family: ui-monospace, Consolas, monospace; font-size: 12px; }
+textarea {
+  resize: vertical;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 12px;
+  min-height: 220px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+}
+
+textarea::-webkit-scrollbar { width: 6px; }
+textarea::-webkit-scrollbar-track { background: transparent; }
+textarea::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
+}
+textarea::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.55);
+}
 
 button {
   border: 0;
@@ -133,17 +208,74 @@ button.ghost:hover { border-color: rgba(255,255,255,0.2); }
   padding: 0;
   max-height: 180px;
   overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+}
+
+.list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 4px 0;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.55);
+}
+
+.list::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
 }
 
 .list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   border-top: 1px solid var(--line);
   padding: 8px 0;
 }
 
 .list li:first-child { border-top: 0; }
 
+.list .fu-main {
+  flex: 1;
+  min-width: 0;
+}
+
 .list .title { font-weight: 600; }
-.list .when { color: var(--muted); font-size: 11px; }
+.list .when {
+  color: var(--muted);
+  font-size: 11px;
+  word-break: break-word;
+}
+
+.list .fu-del {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.list .fu-del:hover {
+  background: rgba(248, 113, 113, 0.12);
+  color: var(--danger);
+}
 
 .foot { text-align: center; margin-top: 8px; }
 

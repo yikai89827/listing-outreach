@@ -16,14 +16,16 @@ Chrome extension for **US buyer’s agents**: open a Zillow / Redfin listing →
 
 | | Free | Pro |
 |--|------|-----|
-| Built-in templates | 2 | unlimited + custom |
-| Generates / month | 20 | unlimited |
-| Saved follow-ups | 30 | unlimited |
-| CSV export | — | yes |
-| Multiple signatures | 1 | yes |
+| Templates | all built-in | all + custom |
+| Generates | 20 / day | unlimited |
+| Follow-ups | unlimited (local) | unlimited |
+| Export CSV / Excel | 1 trial total | unlimited |
 
-Activate Pro: paste a license key in the side panel.  
-Demo key for local testing: `LO-PRO-DEMO-2026`
+Activate Pro: **Buy Pro** (Lemon Squeezy checkout) → paste key → Activate.  
+Mint keys locally: `npm run gen-license`. When Pro is active, the license card hides — clear from the **Pro** badge menu.
+
+Set checkout URL in `extension/lib/commerce.js` (`CHECKOUT_URL`).  
+Full payment / key delivery checklist: [docs/lemonsqueezy-checklist.md](docs/lemonsqueezy-checklist.md)
 
 ## Project layout
 
@@ -40,7 +42,7 @@ extension/
 ## Roadmap (after first paying users)
 
 - One regional MLS host
-- Lemon Squeezy live checkout URL
+- Auto-email keys via LS webhook / Zapier
 - Optional cloud sync (then it’s no longer pure-local)
 
 ## License

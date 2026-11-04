@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Listing Outreach — Agent outreach for Zillow &amp; Redfin</title>
+  <meta name="description" content="Chrome extension for buyer’s agents: pull listing + agent info from Zillow & Redfin, fill SMS/email templates, log follow-ups locally." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg0: #0b1210;
+      --bg1: #12201c;
+      --ink: #e7f2ed;
+      --muted: #8aa89a;
+      --accent: #1fa87a;
+      --accent-ink: #04140f;
+      --line: rgba(231, 242, 237, 0.12);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1000px 520px at 12% -10%, rgba(31, 168, 122, 0.22), transparent 55%),
+        radial-gradient(800px 480px at 90% 10%, rgba(56, 120, 100, 0.18), transparent 50%),
+        linear-gradient(165deg, var(--bg1), var(--bg0) 55%);
+    }
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 28px 22px 40px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .brand {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      letter-spacing: -0.03em;
+      margin: 0;
+      line-height: 1.05;
+    }
+    .brand span {
+      color: var(--accent);
+    }
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      padding: 8vh 0 6vh;
+    }
+    h2 {
+      margin: 0;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 560;
+      font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+      line-height: 1.25;
+      max-width: 16ch;
+      letter-spacing: -0.02em;
+    }
+    .lede {
+      margin: 0;
+      max-width: 36rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    a.btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 10px;
+      padding: 12px 18px;
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+    a.btn:hover { transform: translateY(-1px); }
+    a.btn.primary {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+    a.btn.primary:hover { background: #27c08c; }
+    a.btn.ghost {
+      color: var(--ink);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+    a.btn.ghost:hover { border-color: rgba(231, 242, 237, 0.28); }
+    .panel {
+      margin-top: 28px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px 18px 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      backdrop-filter: blur(6px);
+    }
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .panel ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+    .panel li {
+      font-size: 0.98rem;
+      line-height: 1.4;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .panel li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    footer {
+      margin-top: auto;
+      padding-top: 28px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      justify-content: space-between;
+    }
+    footer a { color: var(--muted); }
+    @media (prefers-reduced-motion: reduce) {
+      a.btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="brand">Listing <span>Outreach</span></p>
+
+    <main class="hero">
+      <h2>Reach listing agents without leaving Zillow or Redfin.</h2>
+      <p class="lede">
+        Chrome side panel for buyer’s agents: extract address &amp; listing agent,
+        fill local SMS/email templates, and keep follow-ups on your device.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/yikai89827/listing-outreach">View on GitHub</a>
+        <a class="btn ghost" href="https://github.com/yikai89827/listing-outreach#load-unpacked">Install (load unpacked)</a>
+      </div>
+
+      <div class="panel">
+        <h3>What you get</h3>
+        <ul>
+          <li>Works on Zillow &amp; Redfin listing pages</li>
+          <li>Templates stay local — no account required for Free</li>
+          <li>Export CSV / Excel · Pro unlocks unlimited use</li>
+        </ul>
+      </div>
+    </main>
+
+    <footer>
+      <span>© Listing Outreach</span>
+      <span>
+        <a href="./lemonsqueezy-checklist.md">Seller checklist</a>
+        ·
+        <a href="../PRIVACY.md">Privacy</a>
+      </span>
+    </footer>
+  </div>
+</body>
+</html>

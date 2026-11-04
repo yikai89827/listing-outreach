@@ -4,6 +4,7 @@
   "private": true,
   "description": "Chrome MV3 extension — listing agent outreach for Zillow & Redfin",
   "scripts": {
-    "zip": "powershell -NoProfile -Command \"Compress-Archive -Path extension\\* -DestinationPath listing-outreach-v0.1.0.zip -Force\""
+    "zip": "powershell -NoProfile -Command \"Compress-Archive -Path extension\\* -DestinationPath listing-outreach-v0.1.0.zip -Force\"",
+    "gen-license": "node scripts/gen-license.mjs"
   }
 }
