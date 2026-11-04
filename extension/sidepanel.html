@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Listing Outreach</title>
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1>Listing Outreach</h1>
+      <p class="sub">Local templates · Zillow & Redfin</p>
+    </div>
+    <span id="planBadge" class="badge">Free</span>
+  </header>
+
+  <section class="card" id="listingCard">
+    <div class="row between">
+      <h2>Current listing</h2>
+      <button type="button" class="ghost" id="btnRefresh">Refresh</button>
+    </div>
+    <p id="listingEmpty" class="muted">Open a Zillow or Redfin listing page, then refresh.</p>
+    <div id="listingBody" class="hidden">
+      <p class="addr" id="fAddress">—</p>
+      <p class="meta"><span id="fPrice">—</span> · <span id="fSource">—</span></p>
+      <p class="meta">Agent: <strong id="fAgent">—</strong> · <span id="fPhone">—</span></p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Your profile</h2>
+    <label>Name <input id="pName" autocomplete="name" /></label>
+    <label>Brokerage <input id="pBroker" /></label>
+    <label>Phone <input id="pPhone" autocomplete="tel" /></label>
+    <label>Email <input id="pEmail" autocomplete="email" /></label>
+    <button type="button" class="primary" id="btnSaveProfile">Save profile</button>
+  </section>
+
+  <section class="card">
+    <div class="row between">
+      <h2>Template</h2>
+      <span id="usageHint" class="muted small"></span>
+    </div>
+    <select id="templateSelect"></select>
+    <textarea id="output" rows="8" placeholder="Generated message…"></textarea>
+    <div class="row gap">
+      <button type="button" class="primary" id="btnGenerate">Generate</button>
+      <button type="button" class="ghost" id="btnCopy">Copy</button>
+      <button type="button" class="ghost" id="btnSaveFollow">Save follow-up</button>
+    </div>
+    <p id="genStatus" class="status" aria-live="polite"></p>
+  </section>
+
+  <section class="card">
+    <div class="row between">
+      <h2>Follow-ups</h2>
+      <button type="button" class="ghost" id="btnExport" title="Pro">Export CSV</button>
+    </div>
+    <ul id="followList" class="list"></ul>
+    <p id="followEmpty" class="muted small">No saved outreach yet.</p>
+  </section>
+
+  <section class="card">
+    <h2>Pro license</h2>
+    <p class="muted small">Data stays on your device. Demo key: <code>LO-PRO-DEMO-2026</code></p>
+    <label>License key <input id="licenseKey" placeholder="LO-…" /></label>
+    <div class="row gap">
+      <button type="button" class="primary" id="btnActivate">Activate</button>
+      <button type="button" class="ghost" id="btnDeactivate">Clear</button>
+    </div>
+    <p id="licStatus" class="status"></p>
+  </section>
+
+  <footer class="foot muted small">v0.1.0 · Manifest V3</footer>
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>
